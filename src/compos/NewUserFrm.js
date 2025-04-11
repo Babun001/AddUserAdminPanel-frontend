@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 export default function AdminPage() {
   const [userName, setUserName] = useState('');
+  const [userPass, setUserPass] = useState('');
   const [users, setUsers] = useState([]);
 
   const navigator = useNavigate();
@@ -14,6 +15,10 @@ export default function AdminPage() {
       alert("Please enter a user name.");
       return;
     }
+    if (userName.includes(" ")) {
+      alert("Please enter a user name with out space.");
+      return;
+    }
 
     try {
       const res = await fetch('https://adduseradminpanel-backend.onrender.com/v1/api/new-user', {
@@ -21,12 +26,11 @@ export default function AdminPage() {
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify({ userName })  // send as userName
+        body: JSON.stringify({ userName: userName, password:userPass})
       });
 
       if (res.status === 200) {
         alert(`${userName} created successfully!`);
-        setUserName(""); // Clear input
       } else {
         const err = await res.text();
         alert(`Error: ${err}`);
@@ -73,6 +77,18 @@ export default function AdminPage() {
             onChange={(e) => setUserName(e.target.value)}
             className="form-control"
             placeholder="Enter user name"
+            required
+          />
+        </div>
+        <div className="mb-3">
+          <label className="form-label">User Password</label>
+          <input
+            type="text"
+            name="userPass"
+            value={userPass}
+            onChange={(e) => setUserPass(e.target.value)}
+            className="form-control"
+            placeholder="Enter user password"
             required
           />
         </div>

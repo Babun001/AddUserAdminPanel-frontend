@@ -48,7 +48,7 @@ export default function LoginPage() {
   return (
     <div className="container d-flex justify-content-center align-items-center min-vh-100">
       <div className="card p-4 shadow" style={{ width: '100%', maxWidth: '400px' }}>
-        <h3 className="text-center mb-3">Login</h3>
+        <h3 className="text-center mb-3">Admin Login</h3>
         <form onSubmit={handleLogin}>
           <div className="mb-3">
             <label htmlFor="phoneNumber" className="form-label">Phone Number</label>
