@@ -3,14 +3,14 @@ import { useParams } from 'react-router-dom';
 
 export default function UserPage() {
   const { userId } = useParams();
-  console.log(userId);
+  // console.log(userId);
   
   const [userData, setUserData] = useState(null);
   const [amount, setAmount] = useState('');
 
   const fetchSingleUser = useCallback(async () => {
     try {
-      const res = await fetch(`https://adduseradminpanel-backend-final.onrender.com/v1/api/user/${userId}`);
+      const res = await fetch(`https://adduseradminpanel-backend.onrender.com/v1/api/user/${userId}`);
       const data = await res.json();
       setUserData(data);
     } catch (error) {
@@ -30,7 +30,7 @@ export default function UserPage() {
     }
 
     try {
-      const res = await fetch(`https://adduseradminpanel-backend-final.onrender.com/v1/api/user/${userId}/${type}`, {
+      const res = await fetch(`https://adduseradminpanel-backend.onrender.com/v1/api/user/${userId}/${type}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ amount: numericAmount })

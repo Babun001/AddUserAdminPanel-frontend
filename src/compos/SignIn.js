@@ -24,7 +24,7 @@ export default function SignInPage() {
         }
 
         try {
-            const resp = await fetch("https://adduseradminpanel-backend-final.onrender.com/v1/api/admin-register", {
+            const resp = await fetch("https://adduseradminpanel-backend.onrender.com/v1/api/admin-register", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"

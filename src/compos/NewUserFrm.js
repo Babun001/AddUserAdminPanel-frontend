@@ -16,7 +16,7 @@ export default function AdminPage() {
     }
 
     try {
-      const res = await fetch('https://adduseradminpanel-backend-final.onrender.com/v1/api/new-user', {
+      const res = await fetch('https://adduseradminpanel-backend.onrender.com/v1/api/new-user', {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -25,7 +25,7 @@ export default function AdminPage() {
       });
 
       if (res.status === 200) {
-        alert("User created successfully!");
+        alert(`${userName} created successfully!`);
         setUserName(""); // Clear input
       } else {
         const err = await res.text();
@@ -40,7 +40,7 @@ export default function AdminPage() {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await fetch('https://adduseradminpanel-backend-final.onrender.com/v1/api/all-users');
+        const response = await fetch('https://adduseradminpanel-backend.onrender.com/v1/api/all-users');
         const result = await response.json();
         // console.log(result);
         

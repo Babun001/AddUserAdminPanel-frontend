@@ -1,17 +1,24 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export default function AdminPage() {
-    const [users, setUsers] = useState(['Alice', 'Bob', 'Charlie']);
-    const [newUser, setNewUser] = useState('');
+    const [users, setUsers] = useState([]);
+    useEffect(() => {
+        const fetchUserData = async () => {
+            try {
+                const response = await fetch('https://adduseradminpanel-backend.onrender.com/v1/api/all-users');
+                const result = await response.json();
+                // console.log(result);
 
-    // const handleCreateUser = () => {
-    //     const name = prompt("Enter new user name:");
-    //     if (name && !users.includes(name)) {
-    //         setUsers([...users, name]);
-    //         alert(`User "${name}" created!`);
-    //     }
-    // };
+                setUsers(result.data);
+            } catch (error) {
+                console.error("Error fetching users:", error);
+            }
+        };
+
+        fetchUserData();
+    }, []);
+
     const navigate = useNavigate();
 
     return (
@@ -33,11 +40,17 @@ export default function AdminPage() {
                         Show Users
                     </button>
                     <ul className="dropdown-menu">
-                        {users.map((user, index) => (
-                            <li key={index}>
-                                <span className="dropdown-item">{user}</span>
-                            </li>
-                        ))}
+                        {users.length === 0 ? (
+                            <li className="dropdown-item text-muted">No users found</li>
+                        ) : (
+                            users.map((user, index) => (
+                                <li key={index}>
+                                    <span className="dropdown-item">
+                                        {user.userName} - ₹{user.balance || 0}
+                                    </span>
+                                </li>
+                            ))
+                        )}
                     </ul>
                 </div>
             </div>

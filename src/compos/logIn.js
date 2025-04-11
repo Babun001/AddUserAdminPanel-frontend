@@ -19,7 +19,7 @@ export default function LoginPage() {
       return;
     }
     try {
-      const response = await fetch('https://adduseradminpanel-backend-final.onrender.com/v1/api/admin-login', {
+      const response = await fetch('https://adduseradminpanel-backend.onrender.com/v1/api/admin-login', {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
