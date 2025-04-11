@@ -43,18 +43,18 @@ export default function AdminPage() {
         const response = await fetch('https://adduseradminpanel-backend.onrender.com/v1/api/all-users');
         const result = await response.json();
         // console.log(result);
-        
+
         setUsers(result.data);
       } catch (error) {
         console.error("Error fetching users:", error);
       }
     };
-  
+
     fetchUserData();
   }, []);
 
 
-  function navigate(userID){
+  function navigate(userID) {
     navigator(`/user/${userID}`)
   }
 
@@ -94,7 +94,7 @@ export default function AdminPage() {
           ) : (
             users.map((user, index) => (
               <li key={index}>
-                <button className="dropdown-item" onClick={() =>navigate(user.userName)}>
+                <button className="dropdown-item" onClick={() => navigate(user.userName)}>
                   {user.userName} - ₹{user.balance || 0}
                 </button>
               </li>

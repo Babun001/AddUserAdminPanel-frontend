@@ -19,7 +19,12 @@ export default function AdminPage() {
         fetchUserData();
     }, []);
 
-    const navigate = useNavigate();
+    const navigate  = useNavigate();
+    
+    function navigator(userID){
+        navigate(`/user/${userID}`)
+      }
+    
 
     return (
         <div className="container py-5">
@@ -45,9 +50,9 @@ export default function AdminPage() {
                         ) : (
                             users.map((user, index) => (
                                 <li key={index}>
-                                    <span className="dropdown-item">
+                                    <button className="dropdown-item" onClick={() => navigator(user.userName)}>
                                         {user.userName} - ₹{user.balance || 0}
-                                    </span>
+                                    </button>
                                 </li>
                             ))
                         )}
