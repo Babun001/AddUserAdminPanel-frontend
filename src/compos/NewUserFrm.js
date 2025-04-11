@@ -86,7 +86,7 @@ export default function AdminPage() {
           data-bs-toggle="dropdown"
           aria-expanded="false"
         >
-          Show Existing Users
+          Show & Edit Existing Users
         </button>
         <ul className="dropdown-menu">
           {users.length === 0 ? (
